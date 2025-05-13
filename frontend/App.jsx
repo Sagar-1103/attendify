@@ -1,9 +1,8 @@
-import React from 'react';
 import {LogBox} from 'react-native';
 LogBox.ignoreLogs(['new NativeEventEmitter']);
 import {NavigationContainer} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home from './components/Home';
+import Home from './screens/home';
 
 const Stack = createNativeStackNavigator();
 const App = () => {
