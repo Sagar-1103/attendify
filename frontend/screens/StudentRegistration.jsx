@@ -238,7 +238,7 @@ export default function StudentRegistration({navigation}) {
                     style={styles.signupButton} 
                     onPress={() => navigation.navigate('Login')}
                 >
-                    <Text style={styles.signupButtonText}>Sign Up</Text>
+                    <Text style={styles.signupButtonText}>Register</Text>
                 </TouchableOpacity>
 
                 <Image 
