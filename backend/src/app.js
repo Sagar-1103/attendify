@@ -4,6 +4,7 @@ import cors from "cors";
 dotenv.config();
 
 import homeRouter from "./routes/home.route.js";
+import adminRouter from "./routes/admin.route.js";
 const app = express();
 
 app.use(express.json());
@@ -13,5 +14,6 @@ app.use(cors({
 }))
 
 app.use("/",homeRouter);
+app.use("/users/admin",adminRouter);
 
 export {app};

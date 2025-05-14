@@ -1,9 +1,37 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from 'react-native';
+import axios from 'axios';
+import { useState } from 'react';
+import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, Alert } from 'react-native';
 import { enableScreens } from 'react-native-screens';
+import { useAuth } from '../context/AuthProvider';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 enableScreens();
 
 export default function LoginScreen({ navigation }) {
+  const [username,setUsername] = useState("");
+  const [password,setPassword] = useState("");
+  const {setToken,setUser} = useAuth();
 
+  const handleAdminLogin = async()=>{
+    if(!username || !password){
+      Alert.alert("Insufficient Data","Fill all required fields.")
+      return;
+    }
+    try {
+      const url = `https://attendify-backend-eight.vercel.app/users/admin/login`;
+      const response = await axios.post(url,{username,password},{
+        headers:{
+          "Content-Type":"application/json"
+        }
+      })
+      const res = await response.data;
+      setUser(res.data.user);
+      setToken(res.data.token);
+      await AsyncStorage.setItem('user',JSON.stringify(res.data.user));
+      await AsyncStorage.setItem('token',res.data.token);
+    } catch (error) {
+      console.log("Error: ",error);
+    }
+  }
 
     return (
       <View style={styles.container}>
@@ -20,6 +48,8 @@ export default function LoginScreen({ navigation }) {
           style={styles.input}
           placeholder="Email Address"
           placeholderTextColor="#666"
+          value={username}
+          onChangeText={setUsername}
         />
   
         {/* Password Input */}
@@ -27,6 +57,8 @@ export default function LoginScreen({ navigation }) {
           style={styles.input}
           placeholder="Password"
           placeholderTextColor="#666"
+          value={password}
+          onChangeText={setPassword}
           secureTextEntry
         />
   
@@ -36,7 +68,7 @@ export default function LoginScreen({ navigation }) {
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MainContainer')}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('AdminContainer')}>
+        <TouchableOpacity style={styles.button} onPress={handleAdminLogin}>
           <Text style={styles.buttonText}>Admin</Text>
         </TouchableOpacity>
   
