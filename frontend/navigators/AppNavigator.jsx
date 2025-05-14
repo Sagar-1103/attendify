@@ -12,7 +12,7 @@ import { Text, View } from 'react-native';
 const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
-    const {user,setUser,setToken} = useAuth();
+    const {user,setUser,token,setToken} = useAuth();
     const [loading,setLoading] = useState(true);
 
      useEffect(()=>{

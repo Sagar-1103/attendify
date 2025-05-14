@@ -20,14 +20,16 @@ export default function LoginScreen({ navigation }) {
       const url = `https://attendify-backend-eight.vercel.app/users/admin/login`;
       const response = await axios.post(url,{username,password},{
         headers:{
-          "Content-Type":"application/json"
+          "Content-Type":"application/json",
         }
       })
       const res = await response.data;
-      setUser(res.data.user);
-      setToken(res.data.token);
-      await AsyncStorage.setItem('user',JSON.stringify(res.data.user));
-      await AsyncStorage.setItem('token',res.data.token);
+      if(res.success){
+        setUser(res.data.user);
+        setToken(res.data.token);
+        await AsyncStorage.setItem('user',JSON.stringify(res.data.user));
+        await AsyncStorage.setItem('token',res.data.token);
+      }
     } catch (error) {
       console.log("Error: ",error);
     }

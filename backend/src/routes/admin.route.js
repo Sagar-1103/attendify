@@ -6,6 +6,7 @@ const router = Router();
 
 router.route("/create").post(createAdmin);
 router.route("/login").post(loginAdmin);
+
 router.route("/logout").patch(verifyAdmin,logoutAdmin);
 
 export default router;

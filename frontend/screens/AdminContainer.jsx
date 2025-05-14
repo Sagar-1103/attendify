@@ -8,6 +8,7 @@ import ProfileScreen from './ProfileAdmin';
 import DashboardScreen from './HomeAdmin';
 import StatsScreen from './StatsAdmin';
 import CameraScreen from './CameraScreen';
+import StudentRegistration from './StudentRegistration';
 
 //Screen names
 const homeName = "Home";
@@ -52,6 +53,10 @@ function AdminContainer() {
             iconSource = focused
               ? require('../assets/profile-active.png') // Example custom icon
               : require('../assets/profile-inactive.png'); // Example custom icon
+          }else if (route.name === "Student") {
+            iconSource = focused
+              ? require('../assets/camera-active.png') // Example custom icon
+              : require('../assets/camera-inactive.png'); // Example custom icon
           }
 
           return (
@@ -80,6 +85,7 @@ function AdminContainer() {
       <Tab.Screen name="Home" component={DashboardScreen} />
       <Tab.Screen name="Stats" component={StatsScreen} />
       <Tab.Screen name="Capture" component={CameraScreen} />
+      <Tab.Screen name="Student" component={StudentRegistration} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );
