@@ -3,6 +3,14 @@ import {connectDatabase} from "./src/config/database.config.js";
 import {connectCloudinary} from "./src/config/cloudinary.config.js";
 import dotenv from "dotenv";
 dotenv.config();
+import os from 'os';
+import fs from 'fs';
+import path from 'path';
+
+const uploadsDir = path.join(os.tmpdir(), 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir);
+}
 
 connectDatabase()
 .then(()=>{
