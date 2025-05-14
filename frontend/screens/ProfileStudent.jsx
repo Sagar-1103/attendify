@@ -46,8 +46,8 @@ export default function ProfileScreen() {
         <TouchableOpacity style={styles.editButton}>
           <Text style={styles.editText}>Edit</Text>
         </TouchableOpacity>
-        <Text>Date of Birth: 16th Jan 2002</Text>
-        <Text>Gender: MALE</Text>
+        <Text style={styles.courseDetails}>Date of Birth: 16th Jan 2002</Text>
+        <Text style={styles.courseDetails}>Gender: MALE</Text>
       </View>
 
       {/* Contact Details Section */}
@@ -56,9 +56,9 @@ export default function ProfileScreen() {
         <TouchableOpacity style={styles.editButton}>
           <Text style={styles.editText}>Edit</Text>
         </TouchableOpacity>
-        <Text>Contact no: 1234567890</Text>
-        <Text>Email: abc123@gmail.com</Text>
-        <Text>Address: 12, abc street, defgh, ijklm - 123456.</Text>
+        <Text style={styles.addText}>Contact no: 1234567890</Text>
+        <Text style={styles.addText}>Email: abc123@gmail.com</Text>
+        <Text style={styles.addText}>Address: 12, abc street, defgh, ijklm - 123456.</Text>
       </View>
 
       {/* Current/Ongoing Courses Section */}
@@ -107,21 +107,22 @@ const styles = StyleSheet.create({
   profileInfo: {
     flexDirection: "row",
     marginTop: 20,
+    color: 'black'
   },
   profileImage: {
     width: 80,
     height: 80,
     borderRadius: 40,
     borderWidth: 2,
-    borderColor: "#ddd",
+    borderColor: "black",
   },
   profileText: {
     marginLeft: 20,
-    justifyContent: "center",
+    justifyContent: "center", color: 'black'
   },
   name: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: "bold", color: 'black'
   },
   id: {
     fontSize: 14,
@@ -130,7 +131,7 @@ const styles = StyleSheet.create({
   headerIcons: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 20,
+    marginTop: 20, color: 'black'
   },
   icon: {
     fontSize: 24,
@@ -139,7 +140,7 @@ const styles = StyleSheet.create({
     margin: 20,
     padding: 15,
     borderRadius: 10,
-    elevation: 2,
+    elevation: 2, color: 'black'
   },
   academicDetail: {
     color: "#fff",
@@ -149,16 +150,16 @@ const styles = StyleSheet.create({
   section: {
     padding: 20,
     borderBottomWidth: 1,
-    borderBottomColor: "#ddd",
+    borderBottomColor: "#ddd", color: 'black'
   },
   sectionTitle: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: "bold", color: 'black'
   },
   editButton: {
     position: "absolute",
     right: 20,
-    top: 20,
+    top: 20, color: 'black'
   },
   editText: {
     color: "#9747FF",
@@ -170,7 +171,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#ddd",
     borderRadius: 10,
-    backgroundColor: "#f9f9f9",
+    backgroundColor: "#f9f9f9", color: 'black'
   },
   courseBadge: {
     backgroundColor: "#9747FF",

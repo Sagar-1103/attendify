@@ -1,11 +1,7 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image, Button, ListRenderItem, TouchableOpacity, TextInput, FlatList, ScrollView } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { useState } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, FlatList, ScrollView } from 'react-native';
 import { enableScreens } from 'react-native-screens';
 enableScreens();
-// import { LineChart } from 'react-native-chart-kit';
-// import DashboardScreen from 'C:/Users/thaku/OneDrive/Desktop/Attendify/Collectify/components/home.jsx'
 import PieChart from 'react-native-pie-chart';
 import { G, Circle, Text as SvgText } from 'react-native-svg';
 
@@ -262,8 +258,8 @@ import { G, Circle, Text as SvgText } from 'react-native-svg';
     },
   // home1
   containerh1: { flex: 1, padding: 10 },
-  headerh1: { marginBottom:5 },
-  titleh1: { fontSize: 18, fontWeight: 'bold', marginVertical: 2 },
+  headerh1: { marginBottom:5, color: 'black' },
+  titleh1: { fontSize: 18, fontWeight: 'bold', marginVertical: 2, color: 'black' },
   classCard: { backgroundColor: '#e0f7fa', padding: 10, marginVertical: 5, borderRadius: 5 },
   horizontalScrollContainer: {
     flexDirection: 'row',
@@ -314,20 +310,20 @@ import { G, Circle, Text as SvgText } from 'react-native-svg';
     paddingHorizontal: 60,
   },
   upcoming: { marginVertical: 10 },
-  eventCardh1: { backgroundColor: '#f3e5f5', padding: 15, marginBottom: 10, borderRadius: 5 },
-  eventTitle: { fontWeight: 'bold' },
-  eventDescription: { fontSize: 12 },
+  eventCardh1: { backgroundColor: '#f3e5f5', padding: 15, marginBottom: 10, borderRadius: 5, color: 'black' },
+  eventTitle: { fontWeight: 'bold', color: 'black' },
+  eventDescription: { fontSize: 12, color: 'black' },
   eventDate: { color: 'gray', fontSize: 12 },
   chartContainer: {
     position: 'relative',
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: 10,
+    marginVertical: 10, color: 'black'
   },
   centerLabel: {
     position: 'absolute',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center', color: 'black'
   },
   percentageLabel: {
     fontSize: 18,

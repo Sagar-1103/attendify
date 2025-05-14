@@ -47,8 +47,8 @@ export default function ProfileScreen() {
         <TouchableOpacity style={styles.editButton}>
           <Text style={styles.editText}>Edit</Text>
         </TouchableOpacity>
-        <Text>Date of Birth: - </Text>
-        <Text>Gender: MALE</Text>
+        <Text style={styles.courseDetails}>Date of Birth: - </Text>
+        <Text style={styles.courseDetails}>Gender: MALE</Text>
       </View>
 
       {/* Contact Details Section */}
@@ -57,9 +57,9 @@ export default function ProfileScreen() {
         <TouchableOpacity style={styles.editButton}>
           <Text style={styles.editText}>Edit</Text>
         </TouchableOpacity>
-        <Text>Contact no: 1234567890</Text>
-        <Text>Email: emallikarjuna@nitgoa.ac.in</Text>
-        <Text>Address: 12, abc street, defgh, ijklm - 123456.</Text>
+        <Text  style={styles.courseDetails}>Contact no: 1234567890</Text>
+        <Text style={styles.courseDetails}>Email: emallikarjuna@nitgoa.ac.in</Text>
+        <Text style={styles.courseDetails}>Address: 12, abc street, defgh, ijklm - 123456.</Text>
       </View>
 
       {/* Current/Ongoing Courses Section */}
@@ -95,7 +95,7 @@ export default function ProfileScreen() {
       {["Projects", "Certifications", "Patents", "Extra Curricular Activities"].map((section, index) => (
         <View key={index} style={styles.section}>
           <Text style={styles.sectionTitle}>{section}</Text>
-          <Text>You have not added any yet!</Text>
+          <Text style={styles.courseDetails}>You have not added any yet!</Text>
           <TouchableOpacity>
             <Text style={styles.addText}>+ Add new</Text>
           </TouchableOpacity>
@@ -114,15 +114,15 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: "#fff",
     borderBottomWidth: 1,
-    borderBottomColor: "#ddd",
+    borderBottomColor: "#ddd", color: 'black'
   },
   headerTitle: {
     fontSize: 24,
-    fontWeight: "bold",
+    fontWeight: "bold", color: 'black'
   },
   profileInfo: {
     flexDirection: "row",
-    marginTop: 20,
+    marginTop: 20, color: 'black',
   },
   profileImage: {
     width: 80,
@@ -133,11 +133,11 @@ const styles = StyleSheet.create({
   },
   profileText: {
     marginLeft: 20,
-    justifyContent: "center",
+    justifyContent: "center", color: 'black'
   },
   name: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: "bold", color: 'black'
   },
   id: {
     fontSize: 14,
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: "bold", color: 'black'
   },
   editButton: {
     position: "absolute",

@@ -224,7 +224,7 @@ interface EventItem {
   // home1
   containerh1: { flex: 1, padding: 10, backgroundColor: '#fff' },
   headerh1: { marginBottom: 20 },
-  titleh1: { fontSize: 18, fontWeight: 'bold', marginVertical: 10 },
+  titleh1: { fontSize: 18, fontWeight: 'bold', color: 'black', marginVertical: 10 },
   classCard: { backgroundColor: '#e0f7fa', padding: 10, marginVertical: 5, borderRadius: 5 },
   horizontalScrollContainer: {
     flexDirection: 'row',
@@ -238,7 +238,7 @@ interface EventItem {
     borderRadius: 20,
     width: 200, // Card width
     height: 90,
-    justifyContent: 'center',
+    justifyContent: 'center'
     // alignItems: 'center', // Center content inside the card
   },
   cardTitle: {
@@ -275,23 +275,23 @@ interface EventItem {
     height: 150,
     width: 150,
     marginHorizontal:30,
-    paddingHorizontal: 60,
+    paddingHorizontal: 60, color: 'black'
   },
-  upcoming: { marginVertical: 10 },
+  upcoming: { marginVertical: 10, color: 'black' },
   eventCardh1: { backgroundColor: '#f3e5f5', padding: 15, marginBottom: 10, borderRadius: 10 },
-  eventTitle: { fontWeight: 'bold', fontSize:18 },
-  eventDescription: { fontSize: 14 },
+  eventTitle: { fontWeight: 'bold', fontSize:18, color: 'black' },
+  eventDescription: { fontSize: 14, color: 'black' },
   eventDate: { color: 'gray', fontSize: 12, textAlign: 'right' },
   chartContainer: {
     position: 'relative',
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: 10,
+    marginVertical: 10, color: 'black'
   },
   centerLabel: {
     position: 'absolute',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center', color: 'black'
   },
   percentageLabel: {
     fontSize: 18,

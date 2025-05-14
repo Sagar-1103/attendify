@@ -235,8 +235,8 @@ import { G, Circle, Text as SvgText } from 'react-native-svg';
     },
   // home1
   containerh1: { flex: 1, padding: 10, backgroundColor:'#fff' },
-  headerh1: { marginBottom:5 },
-  titleh1: { fontSize: 18, fontWeight: 'bold', marginVertical: 2 },
+  headerh1: { marginBottom:5, color: 'black' },
+  titleh1: { fontSize: 18, fontWeight: 'bold', marginVertical: 2, color: 'black' },
   classCard: { backgroundColor: '#e0f7fa', padding: 10, marginVertical: 5, borderRadius: 5 },
   horizontalScrollContainer: {
     flexDirection: 'row',
@@ -286,10 +286,10 @@ import { G, Circle, Text as SvgText } from 'react-native-svg';
     marginHorizontal:30,
     paddingHorizontal: 60,
   },
-  upcoming: { marginVertical: 10 },
+  upcoming: { marginVertical: 10, color: 'black' },
   eventCardh1: { backgroundColor: '#f3e5f5', padding: 15, marginBottom: 10, borderRadius: 5 },
-  eventTitle: { fontWeight: 'bold' },
-  eventDescription: { fontSize: 12 },
+  eventTitle: { fontWeight: 'bold', color: 'black' },
+  eventDescription: { fontSize: 12, color: 'black' },
   eventDate: { color: 'gray', fontSize: 12 },
   chartContainer: {
     position: 'relative',

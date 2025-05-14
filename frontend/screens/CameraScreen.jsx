@@ -142,11 +142,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingHorizontal: 20,
   },
-  containerh1: { flex: 1, padding: 10, backgroundColor: "#fff" },
+  containerh1: { flex: 1, padding: 10, backgroundColor: "#fff", color: 'black' },
   title: {
     fontSize: 20,
     fontWeight: "bold",
-    marginBottom: 20,
+    marginBottom: 20, color: 'black'
   },
   imagePreview: {
     width: 400,
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     width: "100%",
-    marginBottom: 20,
+    marginBottom: 20, color: 'black'
   },
   button: {
     backgroundColor: "#9747FF",
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     flex: 1,
     marginHorizontal: 5,
-    alignItems: "center",
+    alignItems: "center", color: 'black'
   },
   buttonText: {
     color: "#fff",
@@ -205,6 +205,6 @@ const styles = StyleSheet.create({
   resultText: {
     fontSize: 16,
     fontWeight: "bold",
-    marginBottom: 5,
+    marginBottom: 5, color: 'black'
   },
 });
