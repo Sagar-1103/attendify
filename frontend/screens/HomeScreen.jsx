@@ -16,7 +16,7 @@ export default function HomeScreen({ navigation }) {
         <TouchableOpacity style={styles.loginbtn} onPress={() => navigation.navigate('Login')}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.signupbtn} onPress={() => navigation.navigate('SignUp')}>
+        <TouchableOpacity style={styles.signupbtn}>
           <Text style={styles.buttonText}>Sign up</Text>
         </TouchableOpacity>
         <Image 
@@ -68,7 +68,7 @@ export default function HomeScreen({ navigation }) {
       width:150,
     },
     signupbtn: {
-      backgroundColor: '#2B4EFF',
+      // backgroundColor: '#2B4EFF',
       paddingVertical: 12,
       paddingHorizontal: 30,
       borderRadius: 25,

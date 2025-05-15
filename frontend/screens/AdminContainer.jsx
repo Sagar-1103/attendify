@@ -24,6 +24,7 @@ function AdminContainer() {
       initialRouteName="Home"
       screenOptions={({ route }) => ({
         activeTintColor: 'white',
+        headerShown:false,
         inactiveTintColor: 'gray',
         style: { padding: 10, height: 80 },
         tabBarIcon: ({ focused, color, size }) => {
@@ -85,7 +86,6 @@ function AdminContainer() {
       <Tab.Screen name="Home" component={DashboardScreen} />
       <Tab.Screen name="Stats" component={StatsScreen} />
       <Tab.Screen name="Capture" component={CameraScreen} />
-      <Tab.Screen name="Student" component={StudentRegistration} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );

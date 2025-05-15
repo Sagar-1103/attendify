@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, {useState} from 'react';
 import {
   StyleSheet,
@@ -11,6 +12,7 @@ import {
   Modal,
 } from 'react-native';
 import {launchImageLibrary, launchCamera} from 'react-native-image-picker';
+import { useAuth } from '../context/AuthProvider';
 
 export default function StudentRegistration({navigation}) {
   const [department, setDepartment] = useState('');
@@ -23,7 +25,7 @@ export default function StudentRegistration({navigation}) {
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
   const [confirmPassword,setConfirmPassword] = useState('');
-
+  const {token} = useAuth();
   const departments = [
     'Computer Science Engineering',
     'Electronics & Communication Engineering',
@@ -36,9 +38,9 @@ export default function StudentRegistration({navigation}) {
     const options = {
       mediaType: 'photo',
       includeBase64: true,
-      maxHeight: 2000,
-      maxWidth: 2000,
-      quality: 0.4,
+      maxHeight: 400,        // reduce image height
+      maxWidth: 400,         // reduce image width
+      quality: 0.2,
       selectionLimit: 1,
       includeExtra: true,
     };
@@ -82,9 +84,9 @@ export default function StudentRegistration({navigation}) {
     const options = {
       mediaType: 'photo',
       includeBase64: true,
-      maxHeight: 2000,
-      maxWidth: 2000,
-      quality: 0.4,
+      maxHeight: 400,        // reduce image height
+      maxWidth: 400,         // reduce image width
+      quality: 0.2,
       saveToPhotos: true,
     };
 
@@ -130,8 +132,25 @@ export default function StudentRegistration({navigation}) {
       return;
     }
     try {
-        console.log(photoBase64);
-        
+      const url = `https://attendify-backend-eight.vercel.app/users/student/create`;
+      const response = await axios.post(url,{name,roll,department,email,password,photoBase64},{
+        headers:{
+          "Content-Type":"application/json",
+          "Authorization": `Bearer ${token}`
+        }
+      });
+      const res = await response.data;
+      if(res.success){
+        setName("");
+        setRoll("");
+        setDepartment("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+        setPhotoUri("");
+        setPhotoBase64("");
+        navigation.goBack();
+      }
     } catch (error) {
         console.log("Error: ",error);
     }
@@ -172,6 +191,7 @@ export default function StudentRegistration({navigation}) {
           placeholderTextColor="#666"
           keyboardType="email-address"
           value={email}
+          autoCapitalize='none'
           onChangeText={setEmail}
         />
         <TextInput
@@ -310,7 +330,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     marginVertical: 8,
     fontSize: 16,
-    color: '#666',
+    color: 'black',
   },
   photoButton: {
     backgroundColor: '#EAEAEA',

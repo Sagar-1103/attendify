@@ -104,72 +104,86 @@ export default function ProfileScreen() {
     </ScrollView>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#F8F9FA",
   },
   header: {
     padding: 20,
     backgroundColor: "#fff",
     borderBottomWidth: 1,
-    borderBottomColor: "#ddd", color: 'black'
+    borderBottomColor: "#e0e0e0",
   },
   headerTitle: {
-    fontSize: 24,
-    fontWeight: "bold", color: 'black'
+    fontSize: 26,
+    fontWeight: "700",
+    color: "#2C2C2C",
   },
   profileInfo: {
     flexDirection: "row",
-    marginTop: 20, color: 'black',
+    marginTop: 20,
+    alignItems: "center",
   },
   profileImage: {
     width: 80,
     height: 80,
     borderRadius: 40,
     borderWidth: 2,
-    borderColor: "#ddd",
+    borderColor: "#9747FF",
   },
   profileText: {
-    marginLeft: 20,
-    justifyContent: "center", color: 'black'
+    marginLeft: 16,
+    flex: 1,
   },
   name: {
-    fontSize: 18,
-    fontWeight: "bold", color: 'black'
+    fontSize: 20,
+    fontWeight: "600",
+    color: "#2C2C2C",
   },
   id: {
     fontSize: 14,
-    color: "#555",
+    color: "#777",
+    marginTop: 2,
   },
   headerIcons: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 20,
+    justifyContent: "flex-end",
+    marginTop: 16,
+    gap: 12,
   },
   icon: {
     fontSize: 24,
+    color: "#555",
   },
   academicCard: {
-    margin: 20,
-    padding: 15,
-    borderRadius: 10,
-    elevation: 2,
+    marginHorizontal: 20,
+    marginVertical: 16,
+    padding: 16,
+    borderRadius: 12,
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    backgroundColor: "#d7aef8",
   },
   academicDetail: {
     color: "#fff",
-    fontWeight: "bold",
-    marginBottom: 5,
+    fontSize: 15,
+    fontWeight: "500",
+    marginBottom: 6,
   },
   section: {
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+    backgroundColor: "#fff",
     borderBottomWidth: 1,
-    borderBottomColor: "#ddd",
+    borderBottomColor: "#eee",
   },
   sectionTitle: {
     fontSize: 18,
-    fontWeight: "bold", color: 'black'
+    fontWeight: "600",
+    color: "#2C2C2C",
+    marginBottom: 8,
   },
   editButton: {
     position: "absolute",
@@ -178,33 +192,38 @@ const styles = StyleSheet.create({
   },
   editText: {
     color: "#9747FF",
-    fontWeight: "bold",
+    fontWeight: "600",
+    fontSize: 14,
   },
   courseCard: {
-    marginTop: 20,
-    padding: 15,
-    borderWidth: 1,
-    borderColor: "#ddd",
+    marginTop: 12,
+    padding: 16,
     borderRadius: 10,
-    backgroundColor: "#f9f9f9",
+    backgroundColor: "#f1f3f6",
+    shadowColor: "#000",
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
   },
   courseBadge: {
     backgroundColor: "#9747FF",
     color: "#fff",
-    fontWeight: "bold",
+    fontSize: 13,
+    fontWeight: "600",
     paddingHorizontal: 10,
-    paddingVertical: 5,
+    paddingVertical: 4,
     borderRadius: 5,
     alignSelf: "flex-start",
   },
   courseDetails: {
     marginTop: 10,
     fontSize: 14,
-    color: "#555",
+    color: "#444",
+    lineHeight: 20,
   },
   addText: {
     color: "#9747FF",
-    fontWeight: "bold",
+    fontWeight: "600",
+    fontSize: 15,
     marginTop: 10,
   },
 });

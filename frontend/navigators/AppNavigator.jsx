@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthProvider';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Text, View } from 'react-native';
+import StudentRegistration from '../screens/StudentRegistration';
 
 const Stack = createNativeStackNavigator();
 
@@ -46,6 +47,7 @@ const AppNavigator = () => {
         return (
             <Stack.Navigator screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="AdminContainer" component={AdminContainer} />
+                <Stack.Screen name="StudentRegistration" component={StudentRegistration} />
             </Stack.Navigator>
         );
     }

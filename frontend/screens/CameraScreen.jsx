@@ -1,19 +1,25 @@
-import React, { useState } from "react";
-import { 
-  View, Text, Image, TouchableOpacity, StyleSheet, Alert, ScrollView 
-} from "react-native";
-import { launchCamera, launchImageLibrary } from "react-native-image-picker";
-import { check, request, PERMISSIONS, RESULTS } from "react-native-permissions";
-import { Platform } from "react-native";
+import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+  ScrollView,
+} from 'react-native';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import {check, request, PERMISSIONS, RESULTS} from 'react-native-permissions';
+import {Platform} from 'react-native';
 
-export default function ImagePickerScreen() {
+export default function ImagePickerScreen({navigation}) {
   const [selectedImage, setSelectedImage] = useState(null);
   const [recognitionResult, setRecognitionResult] = useState(null);
 
   // Request camera permission
   const requestCameraPermission = async () => {
     const permission =
-      Platform.OS === "android"
+      Platform.OS === 'android'
         ? PERMISSIONS.ANDROID.CAMERA
         : PERMISSIONS.IOS.CAMERA;
 
@@ -25,27 +31,30 @@ export default function ImagePickerScreen() {
       if (requestResult === RESULTS.GRANTED) {
         openCamera();
       } else {
-        Alert.alert("Permission Required", "Camera access is required to use this feature.");
+        Alert.alert(
+          'Permission Required',
+          'Camera access is required to use this feature.',
+        );
       }
     }
   };
 
   // Open camera
   const openCamera = () => {
-    launchCamera({ mediaType: "photo", saveToPhotos: true }, handleImageResponse);
+    launchCamera({mediaType: 'photo', saveToPhotos: true}, handleImageResponse);
   };
 
   // Open gallery
   const openGallery = () => {
-    launchImageLibrary({ mediaType: "photo" }, handleImageResponse);
+    launchImageLibrary({mediaType: 'photo'}, handleImageResponse);
   };
 
   // Handle image selection response
-  const handleImageResponse = (response) => {
+  const handleImageResponse = response => {
     if (response.didCancel) {
-      console.log("User cancelled image picker");
+      console.log('User cancelled image picker');
     } else if (response.errorCode) {
-      console.error("Image Picker Error:", response.errorMessage);
+      console.error('Image Picker Error:', response.errorMessage);
     } else {
       const imageUri = response.assets[0]?.uri;
       setSelectedImage(imageUri);
@@ -55,50 +64,64 @@ export default function ImagePickerScreen() {
   // Upload image to API
   const uploadImage = async () => {
     if (!selectedImage) {
-      Alert.alert("No Image Selected", "Please select or capture an image first.");
+      Alert.alert(
+        'No Image Selected',
+        'Please select or capture an image first.',
+      );
       return;
     }
 
     const formData = new FormData();
-    formData.append("image", {
+    formData.append('image', {
       uri: selectedImage,
-      type: "image/jpeg",
-      name: "photo.jpg",
+      type: 'image/jpeg',
+      name: 'photo.jpg',
     });
 
     try {
-      console.log("🚀 Uploading image to API...");
-      const response = await fetch("http://15.207.16.228:8000/identify_faces/", {
-        method: "POST",
-        body: formData,
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "multipart/form-data",
+      console.log('🚀 Uploading image to API...');
+      const response = await fetch(
+        'http://15.207.16.228:8000/identify_faces/',
+        {
+          method: 'POST',
+          body: formData,
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'multipart/form-data',
+          },
         },
-      });
+      );
 
-      console.log("📡 Response Status:", response.status);
+      console.log('📡 Response Status:', response.status);
 
       if (!response.ok) {
         throw new Error(`Server responded with status ${response.status}`);
       }
 
       const data = await response.json();
-      console.log("✅ API Response:", data);
+      console.log('✅ API Response:', data);
       setRecognitionResult(data);
     } catch (error) {
-      console.error("🚨 Upload Error:", error);
-      Alert.alert("Upload Failed", "There was an error uploading the image.");
+      console.error('🚨 Upload Error:', error);
+      Alert.alert('Upload Failed', 'There was an error uploading the image.');
     }
   };
 
   return (
-    <ScrollView style={styles.containerh1}>
+    <ScrollView style={styles.scrollContainer}>
       <View style={styles.container}>
-        <Text style={styles.title}>Capture or Pick an Image</Text>
+        <View style={styles.topButtonsContainer}>
+          <TouchableOpacity style={styles.topButton}>
+            <Text style={styles.topButtonText}>Enroll Student</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={()=>navigation.navigate("StudentRegistration")} style={styles.topButton}>
+            <Text style={styles.topButtonText}>Register Student</Text>
+          </TouchableOpacity>
+        </View>
 
+        <Text style={styles.title}>Capture or Pick an Image</Text>
         {selectedImage ? (
-          <Image source={{ uri: selectedImage }} style={styles.imagePreview} />
+          <Image source={{uri: selectedImage}} style={styles.imagePreview} />
         ) : (
           <View style={styles.placeholder}>
             <Text style={styles.placeholderText}>No Image Selected</Text>
@@ -106,7 +129,9 @@ export default function ImagePickerScreen() {
         )}
 
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={requestCameraPermission}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={requestCameraPermission}>
             <Text style={styles.buttonText}>Open Camera</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={openGallery}>
@@ -133,78 +158,105 @@ export default function ImagePickerScreen() {
   );
 }
 
-// Styles
 const styles = StyleSheet.create({
-  container: {
+  scrollContainer: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingHorizontal: 20,
+    backgroundColor: '#fff',
   },
-  containerh1: { flex: 1, padding: 10, backgroundColor: "#fff", color: 'black' },
+  container: {
+    padding: 20,
+    alignItems: 'center',
+    backgroundColor: '#fff',
+  },
+  topButtonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 16,
+    width: '100%',
+  },
+  topButton: {
+    flex: 1,
+    marginHorizontal: 6,
+    backgroundColor: '#2196F3',
+    paddingVertical: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  topButtonText: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: '600',
+  },
   title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 20, color: 'black'
+    fontSize: 22,
+    fontWeight: '700',
+    color: '#333',
+    marginVertical: 16,
+    textAlign: 'center',
   },
   imagePreview: {
-    width: 400,
-    height: 600,
-    borderRadius: 10,
+    width: '100%',
+    height: 400,
+    borderRadius: 12,
     marginBottom: 20,
+    resizeMode: 'cover',
   },
   placeholder: {
-    width: 400,
-    height: 600,
-    borderRadius: 10,
-    backgroundColor: "#f0f0f0",
-    justifyContent: "center",
-    alignItems: "center",
+    width: '100%',
+    height: 400,
+    borderRadius: 12,
+    backgroundColor: '#f2f2f2',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginBottom: 20,
   },
   placeholderText: {
-    color: "#999",
+    fontSize: 16,
+    color: '#aaa',
   },
   buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "100%",
-    marginBottom: 20, color: 'black'
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-between',
+    marginBottom: 20,
   },
   button: {
-    backgroundColor: "#9747FF",
-    padding: 15,
-    borderRadius: 10,
     flex: 1,
-    marginHorizontal: 5,
-    alignItems: "center", color: 'black'
+    marginHorizontal: 6,
+    backgroundColor: '#9747FF',
+    paddingVertical: 14,
+    borderRadius: 10,
+    alignItems: 'center',
   },
   buttonText: {
-    color: "#fff",
-    fontWeight: "bold",
+    fontSize: 15,
+    color: '#fff',
+    fontWeight: '600',
   },
   uploadButton: {
-    backgroundColor: "#4CAF50",
-    padding: 15,
+    backgroundColor: '#4CAF50',
+    paddingVertical: 14,
     borderRadius: 10,
-    width: "100%",
-    alignItems: "center",
+    width: '100%',
+    alignItems: 'center',
+    marginBottom: 16,
   },
   uploadButtonText: {
-    color: "#fff",
-    fontWeight: "bold",
+    color: '#fff',
+    fontSize: 15,
+    fontWeight: '600',
   },
   resultContainer: {
-    marginTop: 20,
-    padding: 10,
-    backgroundColor: "#e0e0e0",
+    backgroundColor: '#f9f9f9',
     borderRadius: 10,
-    width: "100%",
+    padding: 16,
+    width: '100%',
+    marginTop: 10,
   },
   resultText: {
     fontSize: 16,
-    fontWeight: "bold",
-    marginBottom: 5, color: 'black'
+    color: '#333',
+    marginBottom: 6,
+    fontWeight: '500',
   },
 });

@@ -51,6 +51,7 @@ export default function LoginScreen({ navigation }) {
           placeholder="Email Address"
           placeholderTextColor="#666"
           value={username}
+          autoCapitalize='none'
           onChangeText={setUsername}
         />
   
@@ -146,6 +147,7 @@ export default function LoginScreen({ navigation }) {
       marginVertical: 10,
       width: '85%',
       fontSize: 16,
+      color:"black"
     },
     forgotPassword: {
       color: '#2B4EFF',
