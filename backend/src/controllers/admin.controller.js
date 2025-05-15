@@ -8,9 +8,9 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 export const createAdmin = AsyncHandler(async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password ,name,post,exp,gender,contact,department,image} = req.body;
 
-  if (!username || !password) {
+  if (!username || !password  || !name || !post || !exp || !gender || !contact || !department) {
     throw new ApiError(404, "Invalid Fields");
   }
 
@@ -24,6 +24,13 @@ export const createAdmin = AsyncHandler(async (req, res) => {
 
   const newAdmin = await Admin.create({
     username,
+    name,
+    post,
+    gender,
+    exp,
+    contact,
+    department,
+    image,
     password: hashedPassword,
   });
 
@@ -81,5 +88,5 @@ export const loginAdmin = AsyncHandler(async (req, res) => {
   existingUser.token = token;
   await existingUser.save();
 
-  return res.status(201).json(new ApiResponse(201, {user: {id: existingUser._id,username: existingUser.username,role: "admin"},token}));
+  return res.status(201).json(new ApiResponse(201, {user: {id: existingUser._id,username: existingUser.username,name:existingUser.name,post:existingUser.post,department:existingUser.department,image:existingUser.image,exp:existingUser.exp,gender:existingUser.gender,contact:existingUser.contact,role: "admin"},token}));
 });

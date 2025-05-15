@@ -1,7 +1,11 @@
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
+import {useAuth} from "../context/AuthProvider";
 
 export default function ProfileScreen() {
+  const {user} = useAuth();
+  console.log(user);
+  
   return (
     <ScrollView style={styles.container}>
       {/* Header Section */}
