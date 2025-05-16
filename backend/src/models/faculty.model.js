@@ -1,17 +1,33 @@
 import mongoose, { Schema } from "mongoose";
 
-const studentSchema = new Schema({
+const facultySchema = new Schema({
+    username:{
+        type:String,
+        required:true,
+        unique:true,
+    },
     name:{
         type:String,
         required:true,
     },
-    email:{
+    post:{
         type:String,
         required:true,
     },
-    roll:{
+    exp:{
         type:String,
         required:true,
+    },
+    gender:{
+        type:String,
+        required:true,
+    },
+    contact:{
+        type:String,
+        required:true,
+    },
+    image:{
+        type:String,
     },
     department:{
         type:String,
@@ -21,19 +37,15 @@ const studentSchema = new Schema({
         type:String,
         required:true,
     },
-    photo:{
+    token:{
         type:String,
-        required:true,
     },
     role:{
         type:String,
-        default:"student",
-    },
-    semester:{
-        type:String,
+        default:"faculty"
     }
 },{
     timestamps:true,
 })
 
-export const Student = mongoose.model("Student",studentSchema);
+export const Admin = mongoose.model("Admin",facultySchema);

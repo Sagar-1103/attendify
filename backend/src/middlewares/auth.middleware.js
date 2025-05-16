@@ -6,7 +6,7 @@ import { Admin } from "../models/admin.model.js";
 dotenv.config();
 
 export const verifyAdmin = AsyncHandler(async(req,res,next)=>{
-    const token = req.body.token || req.header("Authorization")?.replace("Bearer ","");
+    const token = req.body?.token || req.header("Authorization")?.replace("Bearer ","");
 
     if(!token){
         throw new ApiError(401,"Unauthorized request");

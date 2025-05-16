@@ -4,7 +4,6 @@ import {useAuth} from "../context/AuthProvider";
 
 export default function ProfileScreen() {
   const {user} = useAuth();
-  console.log(user);
   
   return (
     <ScrollView style={styles.container}>
@@ -13,13 +12,13 @@ export default function ProfileScreen() {
         <Text style={styles.headerTitle}>My Profile</Text>
         <View style={styles.profileInfo}>
           <Image
-            source={{ uri:"https://nitgoa.ac.in/People/frontend/Dr.%20Mallikarjun%20Erramshetty.png" }} // Replace with user avatar URL
+            source={{ uri:user.image }} // Replace with user avatar URL
             style={styles.profileImage}
           />
           <View style={styles.profileText}>
-            <Text style={styles.name}>Dr. Mallikarjun Erramshetty</Text>
-            <Text style={styles.id}>Assistant Professor, </Text>
-            <Text style={styles.id}>Dept of Electronics and Communications </Text>
+            <Text style={styles.name}>{user.name}</Text>
+            <Text style={styles.id}>{user.post}, </Text>
+            <Text style={styles.id}>Dept of {user.department}</Text>
           </View>
         </View>
         <View style={styles.headerIcons}>
@@ -39,10 +38,10 @@ export default function ProfileScreen() {
         end={{ x: 1, y: 1 }}
         style={styles.academicCard}
       >
-        <Text style={styles.academicDetail}>DEPARTMENT: B.Tech. Electronics & Comm.</Text>
+        <Text style={styles.academicDetail}>DEPARTMENT: {user.department}</Text>
         <Text style={styles.academicDetail}>COURSES Assgn : 3</Text>
         <Text style={styles.academicDetail}>BATCHES Assgn: 3</Text>
-        <Text style={styles.academicDetail}>Research/Teaching Experience: 5 years</Text>
+        <Text style={styles.academicDetail}>Research/Teaching Experience: {user.exp}</Text>
       </LinearGradient>
 
       {/* About Section */}
@@ -52,7 +51,7 @@ export default function ProfileScreen() {
           <Text style={styles.editText}>Edit</Text>
         </TouchableOpacity>
         <Text style={styles.courseDetails}>Date of Birth: - </Text>
-        <Text style={styles.courseDetails}>Gender: MALE</Text>
+        <Text style={styles.courseDetails}>Gender: {user.gender}</Text>
       </View>
 
       {/* Contact Details Section */}
@@ -61,22 +60,13 @@ export default function ProfileScreen() {
         <TouchableOpacity style={styles.editButton}>
           <Text style={styles.editText}>Edit</Text>
         </TouchableOpacity>
-        <Text  style={styles.courseDetails}>Contact no: 1234567890</Text>
-        <Text style={styles.courseDetails}>Email: emallikarjuna@nitgoa.ac.in</Text>
-        <Text style={styles.courseDetails}>Address: 12, abc street, defgh, ijklm - 123456.</Text>
+        <Text  style={styles.courseDetails}>Contact no: {user.contact}</Text>
+        <Text style={styles.courseDetails}>Email: {user.username}</Text>
       </View>
 
       {/* Current/Ongoing Courses Section */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Current / Ongoing Courses</Text>
-        <View style={styles.courseCard}>
-          <Text style={styles.courseBadge}>B.Tech EC</Text>
-          <Text style={styles.courseDetails}>
-            Electronics and Communications Engineering {"\n"}
-            Department of Engineering {"\n"}
-            Sep 2025 - Dec 2025 {"\n"}
-          </Text>
-        </View>
         <View style={styles.courseCard}>
           <Text style={styles.courseBadge}>B.Tech EC</Text>
           <Text style={styles.courseDetails}>
